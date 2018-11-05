@@ -6,7 +6,7 @@ final class SwiftJSONTypeTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(SwiftJSONType().text, "Hello, World!")
+        XCTAssertNil(JSONType(nil).value)
     }
 
     static var allTests = [
