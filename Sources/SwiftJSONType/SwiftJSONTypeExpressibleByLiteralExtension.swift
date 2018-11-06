@@ -53,3 +53,9 @@ extension JSONType: ExpressibleByIntegerLiteral {
     }
 }
 
+extension JSONType: ExpressibleByNilLiteral {
+    public init(nilLiteral: ()) {
+        self.init(nil)
+    }
+}
+
