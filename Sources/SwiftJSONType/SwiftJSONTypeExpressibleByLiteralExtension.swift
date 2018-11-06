@@ -35,3 +35,9 @@ extension JSONType: ExpressibleByDictionaryLiteral {
     }
 }
 
+extension JSONType: ExpressibleByFloatLiteral {
+    public init(floatLiteral value: FloatLiteralType) {
+        self.init(value)
+    }
+}
+

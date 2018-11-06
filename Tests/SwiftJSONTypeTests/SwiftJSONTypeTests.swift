@@ -23,6 +23,11 @@ final class SwiftJSONTypeTests: XCTestCase {
         XCTAssertEqual((jsonType.value as? [String: JSONType])?.mapValues {$0.value as? Int}, ["foo": 1])
     }
 
+    func testJSONTypeExpressibleByFloatLiteral() {
+        let jsonType = JSONType(floatLiteral: 2.0)
+        XCTAssertEqual(jsonType.value as? Double, 2.0)
+    }
+
     }
 
     static var allTests = [
