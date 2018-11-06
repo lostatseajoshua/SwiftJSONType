@@ -33,6 +33,11 @@ final class SwiftJSONTypeTests: XCTestCase {
         XCTAssertEqual(jsonType.value as? String, "❄︎")
     }
 
+    func testJSONTypeExpressibleByIntegerLiteral() {
+        let jsonType = JSONType(integerLiteral: 1)
+        XCTAssertEqual(jsonType.value as? Int, 1)
+    }
+
     }
 
     static var allTests = [
@@ -40,5 +45,6 @@ final class SwiftJSONTypeTests: XCTestCase {
         ("testJSONTypeExpressibleByBooleanLiteral", testJSONTypeExpressibleByBooleanLiteral),
         ("testJSONTypeExpressibleByDictionaryLiteral", testJSONTypeExpressibleByDictionaryLiteral),
         ("testJSONTypeExpressibleByGraphemeClusterLiteral", testJSONTypeExpressibleByGraphemeClusterLiteral),
+        ("testJSONTypeExpressibleByIntegerLiteral", testJSONTypeExpressibleByIntegerLiteral),
         ]
 }
