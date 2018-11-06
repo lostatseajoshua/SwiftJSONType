@@ -14,3 +14,9 @@ extension JSONType: ExpressibleByArrayLiteral {
     }
 }
 
+extension JSONType: ExpressibleByBooleanLiteral {
+    public init(booleanLiteral value: BooleanLiteralType) {
+        self.init(value)
+    }
+}
+
