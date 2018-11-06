@@ -41,3 +41,9 @@ extension JSONType: ExpressibleByFloatLiteral {
     }
 }
 
+extension JSONType: ExpressibleByExtendedGraphemeClusterLiteral {
+    public init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+        self.init(value)
+    }
+}
+
