@@ -52,6 +52,7 @@ final class SwiftJSONTypeTests: XCTestCase {
         ("testJSONTypeExpressibleByArrayLiteral", testJSONTypeExpressibleByArrayLiteral),
         ("testJSONTypeExpressibleByBooleanLiteral", testJSONTypeExpressibleByBooleanLiteral),
         ("testJSONTypeExpressibleByDictionaryLiteral", testJSONTypeExpressibleByDictionaryLiteral),
+        ("testJSONTypeExpressibleByFloatLiteral", testJSONTypeExpressibleByFloatLiteral),
         ("testJSONTypeExpressibleByGraphemeClusterLiteral", testJSONTypeExpressibleByGraphemeClusterLiteral),
         ("testJSONTypeExpressibleByIntegerLiteral", testJSONTypeExpressibleByIntegerLiteral),
         ("testJSONTypeExpressibleByNilLiteral", testJSONTypeExpressibleByNilLiteral),
