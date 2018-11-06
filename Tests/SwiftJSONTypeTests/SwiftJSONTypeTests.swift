@@ -18,10 +18,16 @@ final class SwiftJSONTypeTests: XCTestCase {
         XCTAssertTrue(jsonType.value as? Bool ?? false)
     }
 
+    func testJSONTypeExpressibleByDictionaryLiteral() {
+        let jsonType = JSONType(dictionaryLiteral: ("foo", 1))
+        XCTAssertEqual((jsonType.value as? [String: JSONType])?.mapValues {$0.value as? Int}, ["foo": 1])
+    }
+
     }
 
     static var allTests = [
         ("testJSONTypeExpressibleByArrayLiteral", testJSONTypeExpressibleByArrayLiteral),
         ("testJSONTypeExpressibleByBooleanLiteral", testJSONTypeExpressibleByBooleanLiteral),
+        ("testJSONTypeExpressibleByDictionaryLiteral", testJSONTypeExpressibleByDictionaryLiteral),
         ]
 }

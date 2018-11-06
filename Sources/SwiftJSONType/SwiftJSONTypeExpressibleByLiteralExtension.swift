@@ -20,3 +20,18 @@ extension JSONType: ExpressibleByBooleanLiteral {
     }
 }
 
+extension JSONType: ExpressibleByDictionaryLiteral {
+    public typealias Key = String
+    public typealias Value = Encodable
+
+    public init(dictionaryLiteral elements: (String, Encodable)...) {
+        var dictionary = [String: JSONType]()
+
+        for (key, value) in elements {
+            dictionary[key] = JSONType(value: value)
+        }
+
+        self.init(dictionary)
+    }
+}
+
