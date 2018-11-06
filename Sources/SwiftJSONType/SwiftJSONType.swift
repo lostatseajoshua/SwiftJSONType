@@ -1,13 +1,13 @@
 public struct JSONType: Encodable {
-    public typealias Value = Encodable
+    public typealias JSONValue = Encodable
 
-    public let value: Value?
+    public let value: JSONValue?
 
-    public init(value: Value?) {
+    public init(value: JSONValue?) {
         self.value = value
     }
 
-    public init(_ value: Value?) {
+    public init(_ value: JSONValue?) {
         self.value = value
     }
 
