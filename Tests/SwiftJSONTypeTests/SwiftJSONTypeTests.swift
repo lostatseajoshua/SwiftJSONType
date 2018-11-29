@@ -25,6 +25,19 @@ final class SwiftJSONTypeTests: XCTestCase {
     func testJSONTypeExpressibleByDictionaryLiteral() {
         let jsonType = JSONType(dictionaryLiteral: ("foo", 1))
         XCTAssertEqual((jsonType.value as? [String: JSONType])?.mapValues {$0.value as? Int}, ["foo": 1])
+
+        var dictionary = [String: JSONType]()
+
+        let keys = ["a", "b", "c", "d", "e", "f"]
+        let values: [JSONType] = [true, 1, 2.0, "❄︎", nil, "foo"]
+
+        for i in 0..<keys.count {
+            dictionary[keys[i]] = values[i]
+        }
+
+        let jsonDictionaryType: JSONType = ["a": true, "b": 1, "d": 2.0, "c": nil, "e": "foo"]
+        XCTAssertNotNil(jsonDictionaryType.getValue())
+        XCTAssertNotNil(JSONType((dictionary as Encodable)).value)
     }
 
     func testJSONTypeExpressibleByFloatLiteral() {
