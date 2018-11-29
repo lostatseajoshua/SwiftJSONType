@@ -22,3 +22,7 @@ extension JSONType: Encodable {
         try value?.encode(to: encoder)
     }
 }
+
+public typealias JT = JSONType
+public typealias JSON = JSONType
+public typealias Json = JSONType
