@@ -5,7 +5,6 @@
 //  Created by Joshua Alvarado on 11/4/18.
 //
 
-
 extension JSONType: ExpressibleByArrayLiteral {
     public typealias ArrayLiteralElement = Encodable
 
@@ -22,9 +21,9 @@ extension JSONType: ExpressibleByBooleanLiteral {
 
 extension JSONType: ExpressibleByDictionaryLiteral {
     public typealias Key = String
-    public typealias Value = Encodable
+    public typealias Value = Encodable?
 
-    public init(dictionaryLiteral elements: (String, Encodable)...) {
+    public init(dictionaryLiteral elements: (String, Encodable?)...) {
         var dictionary = [String: JSONType]()
 
         for (key, value) in elements {
@@ -64,4 +63,3 @@ extension JSONType: ExpressibleByStringLiteral {
         self.init(value)
     }
 }
-
