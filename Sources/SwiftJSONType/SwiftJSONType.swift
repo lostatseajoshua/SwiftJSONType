@@ -11,6 +11,11 @@ public struct JSONType {
         self.value = value
     }
 
+    public func getValue<T>() -> T? {
+      return value as? T
+    }
+}
+
 // MARK: - Encodable
 extension JSONType: Encodable {
     public func encode(to encoder: Encoder) throws {
