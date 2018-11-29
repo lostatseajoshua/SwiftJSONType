@@ -2,6 +2,21 @@
 > Concrete JSON Type in Swift. 
 
 Swift is missing a concrete json object to create dictionaries and collections with mixed json codable objects.
+If `Encoable` we are unable to create `[String: Encodable]` collections which would be the replacement for `[String: AnyObject]`.
+SwiftJSONType provides an object warpper for objects that adhere to `Encodable`. You can create mixed collections that can be encoded with `JSONEncoder` and then created back into objects with `JSONDecoder`.
+
+```swift
+// use JSONType with codable
+struct Foo: Codable {
+    let bar: Bool
+}
+
+let dictionary: [String: JSONType] = ["bar": true]
+
+let encodedData = try! JSONEncoder().encode(dictionary)
+let foo = try! JSONDecoder().decode(Foo.self, from: encodedData)
+print(foo.bar) // true
+```
 
 ## Usage
 
@@ -19,10 +34,8 @@ if let num: Int = jsonType.getValue() {
   // casted as Int
 }
 
-// create [String: JSONType] collections
-let dictionary: [String: JSONType] = ["baz": 100, "rect": JSONType(CGRect(x: 12, y: 12, width: 12, height: 12)), "bar": true]
 
-// use JSONType with codable
+// use JSONType to create codable objects from JSON
 
 class Bar: Codable {
     let baz: Int?
@@ -35,6 +48,9 @@ class Bar: Codable {
         self.bar = false
     }
 }
+
+// create [String: JSONType] collections
+let dictionary: [String: JSONType] = ["baz": 100, "rect": JSONType(CGRect(x: 12, y: 12, width: 12, height: 12)), "bar": true]
 
 let encodedData = try! JSONEncoder().encode(dictionary)
 let bar = try! JSONDecoder().decode(Bar.self, from: encodedData)
