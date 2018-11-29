@@ -68,6 +68,20 @@ final class SwiftJSONTypeTests: XCTestCase {
         XCTAssertEqual(jsonType.value as? String, "Foo")
     }
 
+    func testEncodableObject() {
+        let dict0: [String: JSONType] = ["baz": 100, "rect": Json(CGRect(x: 12, y: 12, width: 12, height: 12))]
+        do {
+            let encodedData = try JSONEncoder().encode(dict0)
+            XCTAssertFalse(encodedData.isEmpty)
+            let bar = try JSONDecoder().decode(Bar.self, from: encodedData)
+            XCTAssertNotNil(bar)
+            XCTAssertEqual(bar.baz, 100)
+            XCTAssertEqual(bar.rect, CGRect(x: 12, y: 12, width: 12, height: 12))
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+
     static var allTests = [
         ("testJSONTypeExpressibleByArrayLiteral", testJSONTypeExpressibleByArrayLiteral),
         ("testJSONTypeExpressibleByBooleanLiteral", testJSONTypeExpressibleByBooleanLiteral),
@@ -78,4 +92,16 @@ final class SwiftJSONTypeTests: XCTestCase {
         ("testJSONTypeExpressibleByNilLiteral", testJSONTypeExpressibleByNilLiteral),
         ("testJSONTypeExpressibleByStringLiteral", testJSONTypeExpressibleByStringLiteral),
         ]
+}
+
+// MARK: - Test Codable Class
+
+class Bar: Codable {
+    let baz: Int?
+    let rect: CGRect
+
+    init(baz: Int?) {
+        self.baz = baz
+        self.rect = .zero
+    }
 }
