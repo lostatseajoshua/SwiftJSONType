@@ -19,7 +19,12 @@ public struct JSONType {
 // MARK: - Encodable
 extension JSONType: Encodable {
     public func encode(to encoder: Encoder) throws {
-        try value?.encode(to: encoder)
+        if let value = value {
+            try value.encode(to: encoder)
+        } else {
+            var singleValueContainerEncoder = encoder.singleValueContainer()
+            try singleValueContainerEncoder.encodeNil()
+        }
     }
 }
 
